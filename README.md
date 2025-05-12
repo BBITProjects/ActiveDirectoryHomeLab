@@ -52,7 +52,17 @@ Then, go to file explorer and open the Guest Additions Image in Devices and Driv
 <img src="https://imgur.com/KwGcA8p.jpg" height="80%" width="80%" alt="Locating Guest Additions drive"/> <br/>
 
 Now it's time to set up the internal NIC. On the bottom right of the taskbar, click on the computer icon and click on "Identifying...No internet". This takes you to the Ethernet screen where you can click "Change adapter options". Ethernet 1 is most likely the home router which doesn't need to be changed. You can verify by right clicking -> status -> details. The IPv4 Address should resemble your default gateway, for example, 10.0.x.x. Rename this connection as "Internet". I will rename Ethernet 2 as "-INTERNAL-" so that it can be distinguished from "Internet" easily. 
-<img src="https://imgur.com/jAoQsY5.jpg" height="80%" width="80%" alt="Internet and INTERNAL"/> <br/>
+<img src="https://imgur.com/jAoQsY5.jpg" height="80%" width="80%" alt="Internet and INTERNAL"/> <br/> 
+
+Right click on the -INTERNAL- ethernet, click properties, then double click "Internet Protocol Version 4 (IPv4). Referring back to the original network diagram, enter the information for the Internal NIC: <br/>
+
+IP: 172.16.0.1 <br/>
+Mask: 255.255.255.0 <br/>
+Gateway: <empty> <br/>
+DNS: 172.16.0.1 (same as IP) <br/>
+
+<img src="https://imgur.com/kFM9iKW.jpg" height="80%" width="80%" alt="IP settings"/> <br/>
+ 
 
 
 
