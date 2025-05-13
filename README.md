@@ -112,7 +112,10 @@ Before switching to the client side, users need to be created to simulate client
 
 Give him the same easy to remember password as usual, and for this user, I will enable "Password never expires". To simulate a live environment, create another user so there will be more than one to choose from; this time I picked "Pamela Thompson" with the username "pthompson". Her password will also be set to never expire.v<br/>
 
-Everything on the DC side is complete. The domain is created with a domain name, it's recieving internet from the router, which it will translate and pass along to the clients through the VM network. All that remains is installing Windows 11 in a VM and joining our clients to the domain.
+Everything on the DC side is complete. The domain is created with a domain name, it's recieving internet from the router, which it will translate and pass along to the clients through the VM network. All that remains is installing Windows 11 in a VM and joining our clients to the domain. <br/>
+<br />
+<br />
+Continue this project in [Part 2](https://github.com/BBITProjects/ActiveDirectory-Client-Lab)
 
 
 <!--
