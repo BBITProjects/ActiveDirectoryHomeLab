@@ -107,7 +107,7 @@ Click "Next" to skip exclusions and select the lease time for clients. A lease t
 
 There is also a freature that needsto be disabled to allow clients to browse the internet. Return to the dashboard, click on "Configure this local server", and disable "Internet Explorer Enhanced Security". <br/>
 
-Before switching to the client side, users need to be created to simulate clients. Return to the "Users and Computers" box from the start menu. Right click the domain and select New -> Organizational Unit. I named it "_USERS" so it was easy to identify. Uncheck the "Protect container" option. Click OK. Right click on the newly created _USERS folder, right click and create a new user. I'm going to name this one Bob Smith with the username "bsmith". 
+Before switching to the client side, users need to be created to simulate clients. Return to the "Users and Computers" box from the start menu. Right click the domain and select New -> Organizational Unit. I named it "_USERS" so it was easy to identify. Uncheck the "Protect container" option. Click OK. Right click on the newly created _USERS folder, right click and create a new user. I'm going to name this one Bob Smith with the username "bsmith". <br/>
 <img src="https://imgur.com/rJjM13m.jpg" height="80%" width="80%" alt="Creating a scope"/> <br/>
 
 Give him the same easy to remember password as usual, and for this user, I will enable "Password never expires". To simulate a live environment, create another user so there will be more than one to choose from; this time I picked "Pamela Thompson" with the username "pthompson". Her password will also be set to never expire.v<br/>
