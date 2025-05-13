@@ -89,11 +89,30 @@ You will notice your name in the _ADMINS folder now. To make it an admin user, r
 
 Log out and return to the main login screen. On the bottom left, select "Other user" and log in with your admin name, the one that starts with "a-". <br/>
 
-Referring back to the network map, we need to install RAS/NAT (Remote Access Server/Network Address Translation) so that the clients will be able to access internet through the domain controller. On the Server Manager Dashboard, click on "Add roles and features". Click "Next" until you get to the "Select server roles" screen. Check the "Remote Access" box. Click "Next" two times until you get to "Select role services". Check the box to install "Routing". Then keep clicking "Next", and finally, "Install". This may take a few minutes. Close the boxes when finished.
+Referring back to the network map, we need to install RAS/NAT (Remote Access Server/Network Address Translation) so that the clients will be able to access internet through the domain controller. On the Server Manager Dashboard, click on "Add roles and features". Click "Next" until you get to the "Select server roles" screen. Check the "Remote Access" box. Click "Next" two times until you get to "Select role services". Check the box to install "Routing". Then keep clicking "Next", and finally, "Install". This may take a few minutes. Close the boxes when finished. <br/>
+<img src="https://imgur.com/k9KPFwX.jpg" height="80%" width="80%" alt="Installing Remote Access"/> <br/>
 
+Back in the dashboard, at the top right, select tools -> Routing and remote access. In the box that appears, right click "DC (local)" and select Configure and Enable routing". In the wizard that pops up, click "Next" once, and for the configuration box, make sure "Network address translation (NAT)" is selected. In the box, you should be able to see your NICs. If not, close back to the dashboard and try again. The interface that reaches the public internet should be selected; in this case, it's the one labeled as "internet". Click "Next" and "Finish". <br/>
+<img src="https://imgur.com/4HILjOv.jpg" height="80%" width="80%" alt="Routing Internet"/> <br/>
 
+There's still one more DC configurationg step so the clients can recieve internet - setting up a DHCP server. Installing the DHCP server is similar to installing AD DS and Remote Access<br/>
 
+Begin by going back to the dashboard. Click on "Add roles", click next until the checkboxes appear in the "Select Server Roles" box, and check and enable "DHCP Server". Select "Add Features", "Next" several times, and finally, "Install". This will take a few minutes to install. 
+<img src="https://imgur.com/IMCqivq.jpg" height="80%" width="80%" alt="Creating DHCP server"/> <br/>
 
+Once finished, in the top right of the dashboard, go to Tools -> DHCP. This is where the scope, or the range of addresses given to clients, is entered. In the dropdown under your domain, right click IPv4 and select "New scope". The name will be the range used. I'll use the range I outlined earlier in the network diagram. Enter "172.16.0.100-200". Click "Next", and enter the starting range (172.16.0.100) and ending range (172.16.0.200). Ensure the length is "24" so the subnet mask is 255.255.255.0. <br/>
+<img src="https://imgur.com/NbNGb3C.jpg" height="80%" width="80%" alt="Creating a scope"/> <br/>
+
+Click "Next" to skip exclusions and select the lease time for clients. A lease time of several days for home lab purposes is okay. In the box asking to configure DNS options, select "Yes". and "Next". In the IP address box, assign the IP of the internal NIC. In this case it will be 172.16.0.1. Click "Add". Click "Next" several times until you choose to active the scope and select "Finish". In the DHCP box, right click your domain and click "Authorize". DNS is now complete. <br/>
+
+There is also a freature that needsto be disabled to allow clients to browse the internet. Return to the dashboard, click on "Configure this local server", and disable "Internet Explorer Enhanced Security". <br/>
+
+Before switching to the client side, users need to be created to simulate clients. Return to the "Users and Computers" box from the start menu. Right click the domain and select New -> Organizational Unit. I named it "_USERS" so it was easy to identify. Uncheck the "Protect container" option. Click OK. Right click on the newly created _USERS folder, right click and create a new user. I'm going to name this one Bob Smith with the username "bsmith". 
+<img src="https://imgur.com/rJjM13m.jpg" height="80%" width="80%" alt="Creating a scope"/> <br/>
+
+Give him the same easy to remember password as usual, and for this user, I will enable "Password never expires". To simulate a live environment, create another user so there will be more than one to choose from; this time I picked "Pamela Thompson" with the username "pthompson". Her password will also be set to never expire.v<br/>
+
+Everything on the DC side is complete. The domain is created with a domain name, it's recieving internet from the router, which it will translate and pass along to the clients through the VM network. All that remains is installing Windows 11 in a VM and joining our clients to the domain.
 
 
 
