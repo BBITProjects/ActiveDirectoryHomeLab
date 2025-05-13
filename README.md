@@ -63,6 +63,36 @@ DNS: 172.16.0.1 (same as IP) <br/>
 
 <img src="https://imgur.com/kFM9iKW.jpg" height="80%" width="80%" alt="IP settings"/> <br/>
  
+Close out of these boxes when finished. <br/>
+
+Next, rename the PC by right clicking the start menu at the bottom left, click system, then "Rename This PC". I will name it "DC" to abbreviate Domain Controller. After this, restart for changes to take effect. <br/>
+<img src="https://imgur.com/mkzKiS7.jpg" height="80%" width="80%" alt="Renaming PC"/> <br/>
+
+
+<h3>Installing Active Directory Domain Services</h3>
+The next big step is installing Active Domain Directory Services (AD DS), and creating a domain. With the Server Manager Dashboard open, click on "Add roles and features". Click "Next" 3 times until reaching the Select Server Roles screen. Check the box with "Active Directory Domain Services" and click next until you are able to install, and then do so. Installation may take several minutes. <br/>
+<img src="https://imgur.com/6h6aQdW.jpg" height="80%" width="80%" alt="Installing AD DS"/> <br/>
+
+Let's configure what we just installed. Click on the yellow exclamation mark at the top of the screen and click "Promote this computer to a domain controller". Add a new forest. For Root domain name, I will choose the name I pre-selected in the diagram: homelabdomain.com. On the next page, domain controller options, I recommend an easy to remember password. Again, I will use Password1. Continue by hitting "next" several times while it sets everything up, and then "install". This will take a couple of minutes and then automatically restart. <br/>
+<img src="https://imgur.com/UDXLnru.jpg" height="80%" width="80%" alt="Creating homelabdomain"/> <br/>
+
+Upon startup, you'll notice the domain name now appears. Log in again. <br/>
+
+The next step is creating an administrative account for the domain. Click on Start -> Administrator > Windows Administrative Tools -> Active Directory Users and Computers. On the left side of this new window, click on homelabdomain.com (or whatever you named yours), and then right click it and select New -> Organizational Unit. <br/>
+<img src="https://imgur.com/SY9GCEH.jpg" height="80%" width="80%" alt="Navigating OUs"/> <br/>
+
+Name it "_ADMINS" and uncheck the box to protect the container. Select "OK". Right click the newly created _ADMINS folder, click new -> user. Enter your first and last name. For the user logon name, I will follow the first initial-full last name format. For example, my logon name will be "bbitterman". Additionally, we need to clarify which type of user we are creating, so I will put an "a-" in front, to signify "administrator". Therefore, the logon name for my administrator account will be "a-bbitterman". When finished, click "next". Enter your easy-to-remember password in the next box. Make sure all boxes are unchecked EXCEPT "Password never expires". Since this is a home lab, ease of use is more important than security. Click "Finish".
+<img src="https://imgur.com/YbhBmqm.jpg" height="80%" width="80%" alt="Creating Admin User"/> <br/>
+
+You will notice your name in the _ADMINS folder now. To make it an admin user, right click it and click properties. Navigate to the "member of" tab. Click on "Add..." and in the box, enter "domain admins". Check name and it should be underlined to show it recognizes your entry. Click OK and then Apply. <br/>
+<img src="https://imgur.com/KF4XjGF.jpg" height="80%" width="80%" alt="Domain admins group"/> <br/>
+
+Log out and return to the main login screen. On the bottom left, select "Other user" and log in with your admin name, the one that starts with "a-". <br/>
+
+Referring back to the network map, we need to install RAS/NAT (Remote Access Server/Network Address Translation) so that the clients will be able to access internet through the domain controller. On the Server Manager Dashboard, click on "Add roles and features". Click "Next" until you get to the "Select server roles" screen. Check the "Remote Access" box. Click "Next" two times until you get to "Select role services". Check the box to install "Routing". Then keep clicking "Next", and finally, "Install". This may take a few minutes. Close the boxes when finished.
+
+
+
 
 
 
