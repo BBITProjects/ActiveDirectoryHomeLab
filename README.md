@@ -35,7 +35,7 @@ Next, click on 'Settings', and click on 'Network'. Adapter 1 is already set; it'
 <img src="https://imgur.com/uwVevrY.jpg" height="80%" width="80%" alt="Setting up Internal NIC"/> <br/>
 
 Launch the DC VM, using the Windows Server ISO to boot. After loading, the Microsoft screen appears. Select "next", then "Install now". Select "Windows Server 2022 Standard Evaluation (Desktop Experience). Select "next" a few more times and it will begin the lengthy process of installing Windows Server. <br/>
-<img src="https://imgur.com/Jm4y71q.jpg" height="80%" width="80%" alt="Installing Windows Server"/> <br/>
+<img src="https://imgur.com/6b9hFTO.png" height="80%" width="80%" alt="Installing Windows Server"/> <br/>
 
 When it asks to push any key to continue, do not push anything. Eventually it will end up asking for a user name and password. Keep the default user name "administrator", and for password, enter something easy to remember. I entered "Password1", because this home lab doesn't need strict security. Click "Finish". <br/>
 <img src="https://imgur.com/TdcKLDA.jpg" height="80%" width="80%" alt="Password Screen for Windows Server"/> <br/>
@@ -82,7 +82,7 @@ The next step is creating an administrative account for the domain. Click on Sta
 <img src="https://imgur.com/SY9GCEH.jpg" height="80%" width="80%" alt="Navigating OUs"/> <br/>
 
 Name it "_ADMINS" and uncheck the box to protect the container. Select "OK". Right click the newly created _ADMINS folder, click new -> user. Enter your first and last name. For the user logon name, I will follow the first initial-full last name format. For example, my logon name will be "bbitterman". Additionally, we need to clarify which type of user we are creating, so I will put an "a-" in front, to signify "administrator". Therefore, the logon name for my administrator account will be "a-bbitterman". When finished, click "next". Enter your easy-to-remember password in the next box. Make sure all boxes are unchecked EXCEPT "Password never expires". Since this is a home lab, ease of use is more important than security. Click "Finish".
-<img src="https://imgur.com/YbhBmqm.jpg" height="80%" width="80%" alt="Creating Admin User"/> <br/>
+<img src="https://imgur.com/K0WtKuK.png" height="80%" width="80%" alt="Creating Admin User"/> <br/>
 
 You will notice your name in the _ADMINS folder now. To make it an admin user, right click it and click properties. Navigate to the "member of" tab. Click on "Add..." and in the box, enter "domain admins". Check name and it should be underlined to show it recognizes your entry. Click OK and then Apply. <br/>
 <img src="https://imgur.com/KF4XjGF.jpg" height="80%" width="80%" alt="Domain admins group"/> <br/>
@@ -101,14 +101,14 @@ Begin by going back to the dashboard. Click on "Add roles", click next until the
 <img src="https://imgur.com/IMCqivq.jpg" height="80%" width="80%" alt="Creating DHCP server"/> <br/>
 
 Once finished, in the top right of the dashboard, go to Tools -> DHCP. This is where the scope, or the range of addresses given to clients, is entered. In the dropdown under your domain, right click IPv4 and select "New scope". The name will be the range used. I'll use the range I outlined earlier in the network diagram. Enter "172.16.0.100-200". Click "Next", and enter the starting range (172.16.0.100) and ending range (172.16.0.200). Ensure the length is "24" so the subnet mask is 255.255.255.0. <br/>
-<img src="https://imgur.com/NbNGb3C.jpg" height="80%" width="80%" alt="Creating a scope"/> <br/>
+<img src="https://imgur.com/SW8gYOY.png" height="80%" width="80%" alt="Creating a scope"/> <br/>
 
 Click "Next" to skip exclusions and select the lease time for clients. A lease time of several days for home lab purposes is okay. In the box asking to configure DNS options, select "Yes". and "Next". In the IP address box, assign the IP of the internal NIC. In this case it will be 172.16.0.1. Click "Add". Click "Next" several times until you choose to active the scope and select "Finish". In the DHCP box, right click your domain and click "Authorize". DNS is now complete. <br/>
 
 There is also a freature that needsto be disabled to allow clients to browse the internet. Return to the dashboard, click on "Configure this local server", and disable "Internet Explorer Enhanced Security". <br/>
 
 Before switching to the client side, users need to be created to simulate clients. Return to the "Users and Computers" box from the start menu. Right click the domain and select New -> Organizational Unit. I named it "_USERS" so it was easy to identify. Uncheck the "Protect container" option. Click OK. Right click on the newly created _USERS folder, right click and create a new user. I'm going to name this one Bob Smith with the username "bsmith". <br/>
-<img src="https://imgur.com/rJjM13m.jpg" height="80%" width="80%" alt="Creating a scope"/> <br/>
+<img src="https://imgur.com/rZuCHB6.png" height="80%" width="80%" alt="Creating a scope"/> <br/>
 
 Give him the same easy to remember password as usual, and for this user, I will enable "Password never expires". To simulate a live environment, create another user so there will be more than one to choose from; this time I picked "Pamela Thompson" with the username "pthompson". Her password will also be set to never expire.v<br/>
 
