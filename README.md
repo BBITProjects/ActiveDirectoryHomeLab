@@ -3,6 +3,8 @@
 <h2>Description</h2>
 This lab focuses on setting up Active Directory Domain Services, using 2 virtual machines: One will act as the domain controller which will provide internet to our network, while the other will act as a client within the network. I will explain where to download the files, how to set up the virtual machines, and how to install and configure Active Directory along with Windows 11 for a home lab environment.
 <br/>
+Part 2 will focus on creating a client account and logging in to the newly created domain.
+<br/>
 <br/>
 <img src="https://imgur.com/Xz62YRB.jpg" height="70%" width="70%" alt="Network Diagram"/>
 <br/>
